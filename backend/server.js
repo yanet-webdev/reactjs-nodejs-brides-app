@@ -26,12 +26,14 @@ app.get("/api/productPlans", (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 
-// const __dirname = path.resolve();
-
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get("*", (req, res) =>{
-  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+const __dirname = path.resolve();
+app.get("/", (req, res) => {
+  res.send("Server is ready");
 });
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) => 
+  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+);
 
 // app.get("/", (req, res) => {
 //   res.send("Server is ready ");

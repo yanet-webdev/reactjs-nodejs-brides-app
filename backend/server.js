@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path";
 // import data from "./data.js";
 import dataPlan from "./data-plan.js";
 import userRouter from "./routers/userRouter.js";
@@ -13,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /*connecting to the mongoDB database*/
-mongoose.connect("mongodb://localhost/newbrides", {
+mongoose.connect(process.env.MONGODB_URL ||"mongodb://localhost/newbrides", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true,
@@ -27,9 +28,6 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 
 const __dirname = path.resolve();
-app.get("/", (req, res) => {
-  res.send("Server is ready");
-});
 app.use(express.static(path.join(__dirname, "/frontend/build")));
 app.get("*", (req, res) => 
   res.sendFile(path.join(__dirname, "/frontend/build/index.html"))

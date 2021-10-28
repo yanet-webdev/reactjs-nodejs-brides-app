@@ -631,15 +631,15 @@ footer span a:hover {
     font-size: 15px;
   }
 }
-
-/* responsive media query start cart page */
-/* @media (max-width: 894px) {
-  .cart-content .cart-card h2,
-  h3 {
-    font-size: 25px;
+@media (max-width: 600px) {
+  .category .product-content .card-item img {
+    width: 300px;
+    height: 500px;
   }
-  .cart-content {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+}
+@media (max-width: 520px) {
+  .category .category-content .card-item img {
+    width: 350px;
+    height: 450px;
   }
-} */
+}
